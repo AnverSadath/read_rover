@@ -1,7 +1,9 @@
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
+import 'package:read_rover/view/Explore/explore.dart';
 import 'package:read_rover/view/homepage/homepage.dart';
+import 'package:read_rover/view/settings/settings.dart';
 
 class Bottombar extends StatefulWidget {
   const Bottombar({Key? key}) : super(key: key);
@@ -17,9 +19,8 @@ class BottombarState extends State<Bottombar> {
 
   List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    HomePage(),
-    HomePage(),
-    HomePage(),
+    ExplorePage(),
+    Settingspage()
   ];
 
   List<TabItem> tabItems = [
