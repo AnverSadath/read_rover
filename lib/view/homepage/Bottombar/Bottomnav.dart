@@ -33,8 +33,8 @@ class BottombarState extends State<Bottombar> {
       ),
     ),
     TabItem(
-      Icons.search,
-      "Search",
+      Icons.explore,
+      "Explore",
       Colors.orange,
       labelStyle: TextStyle(
         color: Colors.red,
@@ -42,14 +42,8 @@ class BottombarState extends State<Bottombar> {
       ),
     ),
     TabItem(
-      Icons.layers,
-      "Reports",
-      Colors.red,
-      circleStrokeColor: Colors.black,
-    ),
-    TabItem(
-      Icons.notifications,
-      "Notifications",
+      Icons.settings,
+      "Settings",
       Colors.cyan,
     ),
   ];
