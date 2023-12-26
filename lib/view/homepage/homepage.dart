@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:read_rover/controller/bookapi.dart';
+import 'package:read_rover/view/detailpage/detailpage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,21 +46,29 @@ class _HomePageState extends State<HomePage> {
                               ?.toString() ??
                           '';
 
-                      return Container(
-                        width: 180,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey,
-                          image: thumbnailUrl.isNotEmpty
-                              ? DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(thumbnailUrl),
-                                )
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailsPage(
+                                      item: thumbnailUrl,
+                                    ))),
+                        child: Container(
+                          width: 180,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey,
+                            image: thumbnailUrl.isNotEmpty
+                                ? DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(thumbnailUrl),
+                                  )
+                                : null,
+                          ),
+                          child: thumbnailUrl.isEmpty
+                              ? Center(child: Text("No Image"))
                               : null,
                         ),
-                        child: thumbnailUrl.isEmpty
-                            ? Center(child: Text("No Image"))
-                            : null,
                       );
                     },
                     options: CarouselOptions(
