@@ -116,19 +116,24 @@ class AccessInfo {
     this.quoteSharingAllowed,
   });
 
-  factory AccessInfo.fromJson(Map<String, dynamic> json) => AccessInfo(
-        country: countryValues.map[json["country"]]!,
-        viewability: viewabilityValues.map[json["viewability"]]!,
-        embeddable: json["embeddable"],
-        publicDomain: json["publicDomain"],
-        textToSpeechPermission:
-            textToSpeechPermissionValues.map[json["textToSpeechPermission"]]!,
-        epub: json["epub"] == null ? null : Epub.fromJson(json["epub"]),
-        pdf: json["pdf"] == null ? null : Epub.fromJson(json["pdf"]),
-        webReaderLink: json["webReaderLink"],
-        accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]]!,
-        quoteSharingAllowed: json["quoteSharingAllowed"],
-      );
+  factory AccessInfo.fromJson(Map<String, dynamic> json) {
+    return AccessInfo(
+      country: countryValues.map[json["country"]] ?? Country.IN,
+      viewability:
+          viewabilityValues.map[json["viewability"]] ?? Viewability.NO_PAGES,
+      embeddable: json["embeddable"] ?? false,
+      publicDomain: json["publicDomain"] ?? false,
+      textToSpeechPermission:
+          textToSpeechPermissionValues.map[json["textToSpeechPermission"]] ??
+              TextToSpeechPermission.ALLOWED,
+      epub: json["epub"] == null ? null : Epub.fromJson(json["epub"]),
+      pdf: json["pdf"] == null ? null : Epub.fromJson(json["pdf"]),
+      webReaderLink: json["webReaderLink"] ?? "",
+      accessViewStatus: accessViewStatusValues.map[json["accessViewStatus"]] ??
+          AccessViewStatus.NONE,
+      quoteSharingAllowed: json["quoteSharingAllowed"] ?? false,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "country": countryValues.reverse[country],

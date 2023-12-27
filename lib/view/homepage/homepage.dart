@@ -41,18 +41,18 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder:
                         (BuildContext context, int index, int realIndex) {
                       final book = bookprovider.Responcemodel3?.items?[index];
-                      final thumbnailUrl = book
-                              ?.volumeInfo?.imageLinks?.smallThumbnail
-                              ?.toString() ??
-                          '';
+                      final thumbnailUrl =
+                          book?.volumeInfo?.imageLinks?.smallThumbnail ?? '';
 
                       return GestureDetector(
                         onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailsPage(
-                                      item: thumbnailUrl,
-                                    ))),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsPage(
+                              items: bookprovider.Responcemodel3!.items![index],
+                            ),
+                          ),
+                        ),
                         child: Container(
                           width: 180,
                           decoration: BoxDecoration(
@@ -93,7 +93,9 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                           "Categories",
                           style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       height: 40,
@@ -119,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                             child: Text(
                               bookprovider.Responcemodel3?.items?[index]
                                       .volumeInfo?.categories
-                                      .toString() ??
+                                      ?.join(", ") ??
                                   "",
                             ),
                           ),
@@ -150,24 +152,23 @@ class _HomePageState extends State<HomePage> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          //color: Colors.cyan,
                           child: Row(
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                          book?.volumeInfo?.imageLinks
-                                                  ?.thumbnail ??
-                                              '',
-                                        ))),
+                                  borderRadius: BorderRadius.circular(16),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      book?.volumeInfo?.imageLinks?.thumbnail ??
+                                          '',
+                                    ),
+                                  ),
+                                ),
                                 height: 220,
                                 width: 140,
                               ),
                               Container(
-                                //color: Colors.amber,
                                 height: 220,
                                 width: 255,
                                 child: Padding(
