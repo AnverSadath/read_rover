@@ -125,14 +125,16 @@ class _DetailsPageState extends State<DetailsPage> {
                       ? Text(
                           widget.items.volumeInfo?.description.toString() ?? "",
                           textAlign: TextAlign.justify,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal),
                         )
                       : Text(
                           widget.items.volumeInfo?.description.toString() ?? "",
-                          maxLines: 3,
+                          maxLines: 9,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.justify,
-                          style: TextStyle(fontSize: 16)),
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal)),
                 ],
               ),
             ),
@@ -145,7 +147,20 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(isExpanded ? "Read Less" : "Read More",
-                    style: TextStyle(fontSize: 15)),
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.indigo,
+                        fontWeight: FontWeight.normal)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 175),
+              child: Text(
+                "More from Author",
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.indigo,
+                    fontWeight: FontWeight.bold),
               ),
             )
           ],
