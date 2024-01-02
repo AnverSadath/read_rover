@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 
 class bookapicontroller extends ChangeNotifier {
   ReadApiResponce? Responcemodel3;
-
+  ReadApiResponce? Responcemodel4;
+  ReadApiResponce? Responcemodel5;
   bool loading = false;
 
   fetchdata() async {
@@ -18,6 +19,32 @@ class bookapicontroller extends ChangeNotifier {
     print(responce2.body);
     print(responce2.statusCode);
     Responcemodel3 = ReadApiResponce.fromJson(decodedata);
+
+    notifyListeners();
+  }
+
+  fetchdata2({required String name}) async {
+    final Url = Uri.parse(
+        "https://www.googleapis.com/books/v1/volumes?q=author=$name&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
+    ;
+    var responce2 = await http.get(Url);
+    var decodedata = (jsonDecode(responce2.body));
+    print(responce2.body);
+    print(responce2.statusCode);
+    Responcemodel4 = ReadApiResponce.fromJson(decodedata);
+
+    notifyListeners();
+  }
+
+  fetchdata3() async {
+    final Url = Uri.parse(
+        "https://www.googleapis.com/books/v1/volumes?q=shortstories&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
+    ;
+    var responce2 = await http.get(Url);
+    var decodedata = (jsonDecode(responce2.body));
+    print(responce2.body);
+    print(responce2.statusCode);
+    Responcemodel5 = ReadApiResponce.fromJson(decodedata);
 
     notifyListeners();
   }

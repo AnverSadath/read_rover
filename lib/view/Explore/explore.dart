@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:read_rover/controller/bookapi.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -9,7 +11,18 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> {
   @override
+  void initState() {
+    Provider.of<bookapicontroller>(context, listen: false).fetchdata();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final bookprovider = Provider.of<bookapicontroller>(context);
+    return Scaffold(
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }

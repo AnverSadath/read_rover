@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:read_rover/model/bookmodel.dart';
 import 'package:read_rover/view/Bottombar/Bottomnav.dart';
+
+import '../../controller/bookapi.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key, required this.items});
@@ -12,8 +15,18 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   bool isExpanded = false;
+
+  @override
+  void initState() {
+    Provider.of<bookapicontroller>(context, listen: false)
+        .fetchdata2(name: widget.items.volumeInfo?.authors.toString() ?? "");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bookprovider = Provider.of<bookapicontroller>(context);
+
     return Scaffold(
       appBar: AppBar(
           actions: [
@@ -162,7 +175,72 @@ class _DetailsPageState extends State<DetailsPage> {
                     color: Colors.indigo,
                     fontWeight: FontWeight.bold),
               ),
-            )
+            ),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: bookprovider.Responcemodel4?.items?.length ?? 0,
+              itemBuilder: (context, index) {
+                final book = bookprovider.Responcemodel4?.items?[index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                book?.volumeInfo?.imageLinks?.thumbnail ?? '',
+                              ),
+                            ),
+                          ),
+                          height: 220,
+                          width: 140,
+                        ),
+                        Container(
+                          height: 220,
+                          width: 255,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 20),
+                                Text(
+                                  book?.volumeInfo?.title ?? "",
+                                  style: TextStyle(fontSize: 20),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                                Text(
+                                  book?.volumeInfo?.authors?.join(", ") ?? "",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.cyan,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                                Text(
+                                  book?.volumeInfo?.description ?? "",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 4,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    height: 220,
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

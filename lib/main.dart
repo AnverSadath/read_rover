@@ -23,6 +23,7 @@ class _readroverState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => bookapicontroller()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Bottombar(),
       ),
     );

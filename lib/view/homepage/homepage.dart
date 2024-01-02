@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:read_rover/controller/bookapi.dart';
+import 'package:read_rover/view/ShortStories/shortstories.dart';
 import 'package:read_rover/view/detailpage/detailpage.dart';
 
 class HomePage extends StatefulWidget {
@@ -87,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 210, top: 40),
+                    padding: const EdgeInsets.only(right: 240, top: 40),
                     child: Container(
                       child: Center(
                         child: Text(
@@ -107,31 +108,92 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    height: 55,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      itemCount:
-                          bookprovider.Responcemodel3?.items?.length ?? 0,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              bookprovider.Responcemodel3?.items?[index]
-                                      .volumeInfo?.categories
-                                      ?.join(", ") ??
-                                  "",
+                  SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => shortstories(),
+                                  ));
+                            },
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  "Short Stories ",
+                                ),
+                              ),
+                              height: 35,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              decoration: BoxDecoration(
+                                color: Colors.cyan,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
                             ),
                           ),
-                          height: 30,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.cyan,
-                            borderRadius: BorderRadius.circular(20),
+                          SizedBox(width: 20),
+                          Container(
+                            child: Center(
+                              child: Text(
+                                "Novels",
+                              ),
+                            ),
+                            height: 30,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
-                        ),
+                          SizedBox(width: 20),
+                          Container(
+                            child: Center(
+                              child: Text(
+                                "Short Stories ",
+                              ),
+                            ),
+                            height: 30,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          Container(
+                            child: Center(
+                              child: Text(
+                                "Short Stories ",
+                              ),
+                            ),
+                            height: 30,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          Container(
+                            child: Center(
+                              child: Text(
+                                "Short Stories ",
+                              ),
+                            ),
+                            height: 30,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -170,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Container(
                                 height: 220,
-                                width: 255,
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
