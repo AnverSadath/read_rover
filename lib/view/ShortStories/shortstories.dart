@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:read_rover/controller/bookapi.dart';
+import 'package:read_rover/view/detailpage/detailpage.dart';
 
 class shortstories extends StatefulWidget {
   const shortstories({super.key});
@@ -59,61 +60,71 @@ class _shortstoriesState extends State<shortstories> {
                     final book = bookprovider.Responcemodel5?.items?[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    book?.volumeInfo?.imageLinks?.thumbnail ??
-                                        '',
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsPage(
+                                  items: bookprovider
+                                      .Responcemodel5!.items![index]),
+                            )),
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      book?.volumeInfo?.imageLinks?.thumbnail ??
+                                          '',
+                                    ),
+                                  ),
+                                ),
+                                height: 220,
+                                width: 140,
+                              ),
+                              Container(
+                                height: 220,
+                                width: 238,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 20),
+                                      Text(
+                                        book?.volumeInfo?.title ?? "",
+                                        style: TextStyle(fontSize: 20),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                      Text(
+                                        book?.volumeInfo?.authors?.join(", ") ??
+                                            "",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.cyan,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                      Text(
+                                        book?.volumeInfo?.description ?? "",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 4,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              height: 220,
-                              width: 140,
-                            ),
-                            Container(
-                              height: 220,
-                              width: 238,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 20),
-                                    Text(
-                                      book?.volumeInfo?.title ?? "",
-                                      style: TextStyle(fontSize: 20),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    ),
-                                    Text(
-                                      book?.volumeInfo?.authors?.join(", ") ??
-                                          "",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.cyan,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    ),
-                                    Text(
-                                      book?.volumeInfo?.description ?? "",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 4,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          height: 240,
                         ),
-                        height: 220,
                       ),
                     );
                   },

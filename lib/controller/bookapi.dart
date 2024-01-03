@@ -8,6 +8,7 @@ class bookapicontroller extends ChangeNotifier {
   ReadApiResponce? Responcemodel3;
   ReadApiResponce? Responcemodel4;
   ReadApiResponce? Responcemodel5;
+  ReadApiResponce? Responcemodel6;
   bool loading = false;
 
   fetchdata() async {
@@ -45,6 +46,19 @@ class bookapicontroller extends ChangeNotifier {
     print(responce2.body);
     print(responce2.statusCode);
     Responcemodel5 = ReadApiResponce.fromJson(decodedata);
+
+    notifyListeners();
+  }
+
+  fetchdata4() async {
+    final Url = Uri.parse(
+        "https://www.googleapis.com/books/v1/volumes?q=Novels&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
+    ;
+    var responce2 = await http.get(Url);
+    var decodedata = (jsonDecode(responce2.body));
+    print(responce2.body);
+    print(responce2.statusCode);
+    Responcemodel6 = ReadApiResponce.fromJson(decodedata);
 
     notifyListeners();
   }
