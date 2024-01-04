@@ -5,13 +5,16 @@ import 'package:read_rover/model/bookmodel.dart';
 import 'package:http/http.dart' as http;
 
 class bookapicontroller extends ChangeNotifier {
+  bool isloading = false;
   ReadApiResponce? Responcemodel3;
   ReadApiResponce? Responcemodel4;
   ReadApiResponce? Responcemodel5;
   ReadApiResponce? Responcemodel6;
+  ReadApiResponce? Responcemodel7;
   bool loading = false;
 
   fetchdata() async {
+    isloading = true;
     final Url = Uri.parse(
         "https://www.googleapis.com/books/v1/volumes?q=novels,stories,shortstories,&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
     ;
@@ -25,6 +28,7 @@ class bookapicontroller extends ChangeNotifier {
   }
 
   fetchdata2({required String name}) async {
+    isloading = true;
     final Url = Uri.parse(
         "https://www.googleapis.com/books/v1/volumes?q=author=$name&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
     ;
@@ -38,6 +42,7 @@ class bookapicontroller extends ChangeNotifier {
   }
 
   fetchdata3() async {
+    isloading = true;
     final Url = Uri.parse(
         "https://www.googleapis.com/books/v1/volumes?q=shortstories&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
     ;
@@ -51,6 +56,7 @@ class bookapicontroller extends ChangeNotifier {
   }
 
   fetchdata4() async {
+    isloading = true;
     final Url = Uri.parse(
         "https://www.googleapis.com/books/v1/volumes?q=Novels&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
     ;
@@ -60,6 +66,22 @@ class bookapicontroller extends ChangeNotifier {
     print(responce2.statusCode);
     Responcemodel6 = ReadApiResponce.fromJson(decodedata);
 
+    notifyListeners();
+  }
+
+  Future<void> fetchdata8({required String search}) async {
+    isloading = true;
+    final Url = Uri.parse(
+        "https://www.googleapis.com/books/v1/volumes?q=$search=fullbooks&Key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
+    var response = await http.get(Url);
+
+    if (response.statusCode == 200) {
+      var decodedata = jsonDecode(response.body);
+      Responcemodel7 = ReadApiResponce.fromJson(decodedata);
+    } else {
+      print('Error fetching search data: ${response.statusCode}');
+    }
+    isloading = false;
     notifyListeners();
   }
 }

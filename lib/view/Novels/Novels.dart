@@ -31,7 +31,7 @@ class _NovelsPageState extends State<NovelsPage> {
               child: Container(
                 child: Center(
                   child: Text(
-                    "Short Stories",
+                    "Novels",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
