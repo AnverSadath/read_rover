@@ -22,13 +22,12 @@ class _SettingspageState extends State<Settingspage> {
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
+              child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 60),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onPressed: () {},
                   child: Row(
                     children: [
                       Icon(
@@ -38,52 +37,54 @@ class _SettingspageState extends State<Settingspage> {
                       SizedBox(
                         width: 20,
                       ),
-                      Text(
-                        "Favorites",
-                        style: TextStyle(fontSize: 20),
-                      )
+                      Text("Favorites", style: TextStyle(fontSize: 20)),
                     ],
-                  ),
-                ),
-              ),
+                  )),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 60),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                onPressed: () {},
                 child: Row(
                   children: [
-                    Icon(Icons.file_download_outlined),
-                    Text("Downloads")
+                    Icon(
+                      Icons.file_download_outlined,
+                      size: 30,
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      "Downloads",
+                      style: TextStyle(fontSize: 20),
+                    )
                   ],
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 60),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                onPressed: () {},
                 child: Row(
-                  children: [Icon(Icons.info_rounded), Text("About")],
+                  children: [
+                    Icon(
+                      Icons.info_rounded,
+                      size: 30,
+                    ),
+                    SizedBox(width: 20),
+                    Text("About", style: TextStyle(fontSize: 20))
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: OutlinedButton(
-                  onPressed: () {},
-                  child: Text("name"),
-                  style: OutlinedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 60),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only()))),
-            )
+
             // Container(
             //   height: 60,
             //   width: 150,
