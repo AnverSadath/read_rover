@@ -10,6 +10,7 @@ class bookapicontroller extends ChangeNotifier {
   ReadApiResponce? Responcemodel5;
   ReadApiResponce? Responcemodel6;
   ReadApiResponce? Responcemodel7;
+  ReadApiResponce? Responcemodel8;
   bool loading = false;
 
   fetchdata() async {
@@ -75,6 +76,19 @@ class bookapicontroller extends ChangeNotifier {
     } else {
       print('Error fetching search data: ${response.statusCode}');
     }
+
+    notifyListeners();
+  }
+
+  fetchdata5() async {
+    final Url = Uri.parse(
+        "https://www.googleapis.com/books/v1/volumes?q=history&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");
+    ;
+    var responce2 = await http.get(Url);
+    var decodedata = (jsonDecode(responce2.body));
+    print(responce2.body);
+    print(responce2.statusCode);
+    Responcemodel8 = ReadApiResponce.fromJson(decodedata);
 
     notifyListeners();
   }

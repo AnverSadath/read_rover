@@ -17,6 +17,7 @@ class _ExplorePageState extends State<ExplorePage> {
   void initState() {
     Provider.of<bookapicontroller>(context, listen: false).fetchdata3();
     Provider.of<bookapicontroller>(context, listen: false).fetchdata4();
+    Provider.of<bookapicontroller>(context, listen: false).fetchdata5();
     Provider.of<bookapicontroller>(context, listen: false)
         .fetchdata8(search: "");
     super.initState();
@@ -32,46 +33,54 @@ class _ExplorePageState extends State<ExplorePage> {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Center(
-              child: Text(
-                "EXPLORE",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  "EXPLORE",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: searchController,
-                decoration: InputDecoration(
-                  labelText: 'Search Books',
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      String searchTerm = searchController.text.trim();
-                      if (searchTerm.isNotEmpty) {
-                        Provider.of<bookapicontroller>(context, listen: false)
-                            .fetchdata8(search: searchTerm);
-                      }
-                    },
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    labelText: 'Search Books',
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {
+                        String searchTerm = searchController.text.trim();
+                        if (searchTerm.isNotEmpty) {
+                          Provider.of<bookapicontroller>(context, listen: false)
+                              .fetchdata8(search: searchTerm);
+                        } else {
+                          // If search term is empty, fetch other data
+                          Provider.of<bookapicontroller>(context, listen: false)
+                              .fetchdata3();
+                          Provider.of<bookapicontroller>(context, listen: false)
+                              .fetchdata4();
+                          Provider.of<bookapicontroller>(context, listen: false)
+                              .fetchdata5();
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
-            if (showSearchResults)
-              Expanded(
-                child: ListView.builder(
+              if (showSearchResults)
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   itemCount: bookProvider.Responcemodel7!.items!.length,
                   itemBuilder: (context, index) {
                     final book = bookProvider.Responcemodel7!.items![index];
                     return buildBookItem(book, bookProvider);
                   },
-                ),
-              )
-            else
-              Expanded(
-                child: Column(
+                )
+              else
+                Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 240, top: 20),
@@ -113,6 +122,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     Container(
                       height: 250,
                       child: ListView.builder(
+                        shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount:
                             bookProvider.Responcemodel6?.items?.length ?? 0,
@@ -123,10 +133,35 @@ class _ExplorePageState extends State<ExplorePage> {
                         },
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 300, top: 20),
+                      child: Center(
+                        child: Text(
+                          " History",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 250,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount:
+                            bookProvider.Responcemodel8?.items?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          final book =
+                              bookProvider.Responcemodel8?.items?[index];
+                          return buildBookItem(book, bookProvider);
+                        },
+                      ),
+                    ),
                   ],
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
