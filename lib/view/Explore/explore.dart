@@ -183,6 +183,7 @@ class _ExplorePageState extends State<ExplorePage> {
           children: [
             Container(
               decoration: BoxDecoration(
+                color: Colors.cyan,
                 borderRadius: BorderRadius.circular(16),
                 image: DecorationImage(
                   fit: BoxFit.cover,
