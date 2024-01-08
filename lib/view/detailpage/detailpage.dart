@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:read_rover/model/bookmodel.dart';
 import 'package:read_rover/view/Bottombar/Bottomnav.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/bookapi.dart';
 
@@ -106,7 +107,15 @@ class _DetailsPageState extends State<DetailsPage> {
                                     "",
                                 style: TextStyle(color: Colors.indigo),
                               ),
-                            ))
+                            )),
+                        ElevatedButton(
+                            onPressed: () {
+                              launchUrl(
+                                  Uri.parse(widget.items.volumeInfo!.previewLink
+                                      .toString()),
+                                  mode: LaunchMode.inAppBrowserView);
+                            },
+                            child: Text("Read"))
                       ],
                     ),
                   ),

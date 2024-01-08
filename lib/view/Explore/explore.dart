@@ -56,7 +56,6 @@ class _ExplorePageState extends State<ExplorePage> {
                           Provider.of<bookapicontroller>(context, listen: false)
                               .fetchdata8(search: searchTerm);
                         } else {
-                          // If search term is empty, fetch other data
                           Provider.of<bookapicontroller>(context, listen: false)
                               .fetchdata3();
                           Provider.of<bookapicontroller>(context, listen: false)
@@ -154,6 +153,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         itemBuilder: (context, index) {
                           final book =
                               bookProvider.Responcemodel8?.items?[index];
+
                           return buildBookItem(book, bookProvider);
                         },
                       ),
@@ -183,7 +183,6 @@ class _ExplorePageState extends State<ExplorePage> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.cyan,
                 borderRadius: BorderRadius.circular(16),
                 image: DecorationImage(
                   fit: BoxFit.cover,

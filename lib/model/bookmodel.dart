@@ -215,8 +215,9 @@ class SaleInfo {
   });
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) => SaleInfo(
-        country: countryValues.map[json["country"]]!,
-        saleability: saleabilityValues.map[json["saleability"]]!,
+        country: countryValues.map[json["country"]] ?? Country.IN,
+        saleability:
+            saleabilityValues.map[json["saleability"]] ?? Saleability.FOR_SALE,
         isEbook: json["isEbook"],
         listPrice: json["listPrice"] == null
             ? null
@@ -385,11 +386,9 @@ class VolumeInfo {
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
-        title: json["title"],
-        subtitle: json["subtitle"],
-        authors: json["authors"] == null
-            ? []
-            : List<String>.from(json["authors"]!.map((x) => x)),
+        title: json["title"] ?? "",
+        subtitle: json["subtitle"] ?? "",
+        authors: List<String>.from(json["authors"] ?? []),
         publisher: json["publisher"],
         publishedDate: json["publishedDate"],
         description: json["description"],
@@ -425,8 +424,7 @@ class VolumeInfo {
   Map<String, dynamic> toJson() => {
         "title": title,
         "subtitle": subtitle,
-        "authors":
-            authors == null ? [] : List<dynamic>.from(authors!.map((x) => x)),
+        "authors": authors,
         "publisher": publisher,
         "publishedDate": publishedDate,
         "description": description,
