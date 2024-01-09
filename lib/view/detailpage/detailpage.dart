@@ -55,9 +55,9 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           children: [
             Container(
-              height: 240,
+              height: 270,
               width: double.infinity,
-              // color: Colors.amber,
+              //color: Colors.amber,
               child: Row(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -70,13 +70,13 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     height: 240,
                     width: 150,
-                    color: Colors.black,
+                    //color: Colors.black,
                   ),
                 ),
                 Container(
-                  height: 220,
+                  height: 270,
                   width: 245,
-                  // color: Colors.blue,
+                  //color: Colors.blue,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -99,7 +99,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 border: Border.all(color: Colors.indigo),
                                 borderRadius: BorderRadius.circular(10)),
                             height: 25,
-                            width: 80,
+                            width: 70,
                             child: Center(
                               child: Text(
                                 widget.items.volumeInfo?.categories
@@ -108,14 +108,18 @@ class _DetailsPageState extends State<DetailsPage> {
                                 style: TextStyle(color: Colors.indigo),
                               ),
                             )),
-                        ElevatedButton(
-                            onPressed: () {
-                              launchUrl(
-                                  Uri.parse(widget.items.volumeInfo!.previewLink
-                                      .toString()),
-                                  mode: LaunchMode.inAppBrowserView);
-                            },
-                            child: Text("Read"))
+                        SizedBox(height: 15),
+                        Center(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                launchUrl(
+                                    Uri.parse(widget
+                                        .items.volumeInfo!.previewLink
+                                        .toString()),
+                                    mode: LaunchMode.inAppBrowserView);
+                              },
+                              child: Text("Read")),
+                        )
                       ],
                     ),
                   ),
@@ -166,15 +170,13 @@ class _DetailsPageState extends State<DetailsPage> {
                   isExpanded = !isExpanded;
                 });
               },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(isExpanded ? "Read Less" : "Read More",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.indigo,
-                        fontWeight: FontWeight.normal)),
-              ),
+              child: Text(isExpanded ? "See Less" : "See More",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.indigo,
+                      fontWeight: FontWeight.normal)),
             ),
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(right: 175),
               child: Text(
