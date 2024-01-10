@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:read_rover/model/bookmodel.dart';
+
 import 'package:read_rover/view/Bottombar/Bottomnav.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,7 +36,9 @@ class _DetailsPageState extends State<DetailsPage> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(
+                Icons.favorite_border,
+              ),
               iconSize: 30,
             ),
             IconButton(

@@ -13,8 +13,10 @@ class bookapicontroller extends ChangeNotifier {
   ReadApiResponce? Responcemodel6;
   ReadApiResponce? Responcemodel7;
   ReadApiResponce? Responcemodel8;
-  ReadApiResponce? Responcemodel9;
+
   bool loading = false;
+
+  get favoriteBooks => null;
 
   fetchdata() async {
     final Url = Uri.parse(

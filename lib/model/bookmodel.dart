@@ -415,7 +415,7 @@ class VolumeInfo {
         imageLinks: json["imageLinks"] == null
             ? null
             : ImageLinks.fromJson(json["imageLinks"]),
-        language: languageValues.map[json["language"]]!,
+        language: languageValues.map[json["language"]] ?? Language.EN,
         previewLink: json["previewLink"],
         infoLink: json["infoLink"],
         canonicalVolumeLink: json["canonicalVolumeLink"],
