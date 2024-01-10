@@ -21,6 +21,7 @@ class _DetailsPageState extends State<DetailsPage> {
   void initState() {
     Provider.of<bookapicontroller>(context, listen: false)
         .fetchdata2(name: widget.items.volumeInfo?.authors.toString() ?? "");
+
     super.initState();
   }
 
@@ -94,20 +95,32 @@ class _DetailsPageState extends State<DetailsPage> {
                               TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
                         SizedBox(height: 10),
-                        Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.indigo),
-                                borderRadius: BorderRadius.circular(10)),
-                            height: 25,
-                            width: 70,
-                            child: Center(
-                              child: Text(
-                                widget.items.volumeInfo?.categories
-                                        ?.join(',') ??
-                                    "",
-                                style: TextStyle(color: Colors.indigo),
-                              ),
-                            )),
+                        Row(children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.indigo),
+                                  borderRadius: BorderRadius.circular(10)),
+                              height: 25,
+                              width: 70,
+                              child: Center(
+                                child: Text(
+                                  widget.items.volumeInfo?.categories
+                                          ?.join(',') ??
+                                      "",
+                                  style: TextStyle(color: Colors.indigo),
+                                ),
+                              )),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Provider.of<bookapicontroller>(context,
+                              //         listen: false)
+                              //     .downloadPDF(widget.items.accessInfo?.pdf
+                              //             ?.acsTokenLink ??
+                              //         "your_pdf_download_link_here");
+                            },
+                            child: Text("Download PDF"),
+                          ),
+                        ]),
                         SizedBox(height: 15),
                         Center(
                           child: ElevatedButton(

@@ -399,12 +399,12 @@ class VolumeInfo {
         readingModes: json["readingModes"] == null
             ? null
             : ReadingModes.fromJson(json["readingModes"]),
-        pageCount: json["pageCount"],
+        pageCount: (json["pageCount"] as num?)?.toInt(),
         printType: printTypeValues.map[json["printType"]]!,
         categories: json["categories"] == null
             ? []
             : List<String>.from(json["categories"]!.map((x) => x)),
-        averageRating: json["averageRating"],
+        averageRating: (json["averageRating"] as num?)?.toInt(),
         ratingsCount: json["ratingsCount"],
         maturityRating: maturityRatingValues.map[json["maturityRating"]]!,
         allowAnonLogging: json["allowAnonLogging"],

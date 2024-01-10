@@ -1,6 +1,8 @@
 import 'dart:convert';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:read_rover/model/bookmodel.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +13,7 @@ class bookapicontroller extends ChangeNotifier {
   ReadApiResponce? Responcemodel6;
   ReadApiResponce? Responcemodel7;
   ReadApiResponce? Responcemodel8;
+  ReadApiResponce? Responcemodel9;
   bool loading = false;
 
   fetchdata() async {
@@ -92,4 +95,15 @@ class bookapicontroller extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  // Future<void> downloadPDF(String pdfUrl) async {
+  //   final response = await http.get(Uri.parse(
+  //       "https://www.googleapis.com/books/v1/volumes?q=novels,stories,shortstories,&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w"));
+  //   final documentDirectory = await getApplicationDocumentsDirectory();
+  //   final file = File("${documentDirectory.path}/downloaded_book.pdf");
+
+  //   await file.writeAsBytes(response.bodyBytes);
+
+  //   notifyListeners();
+  // }
 }

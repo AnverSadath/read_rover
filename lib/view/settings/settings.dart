@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:read_rover/view/favpage/favpage.dart';
 
 class Settingspage extends StatefulWidget {
   const Settingspage({super.key});
@@ -27,7 +28,13 @@ class _SettingspageState extends State<Settingspage> {
                       minimumSize: Size(double.infinity, 60),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Favpage(),
+                        ));
+                  },
                   child: Row(
                     children: [
                       Icon(
