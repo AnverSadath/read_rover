@@ -16,8 +16,6 @@ class bookapicontroller extends ChangeNotifier {
 
   bool loading = false;
 
-  get favoriteBooks => null;
-
   fetchdata() async {
     final Url = Uri.parse(
         "https://www.googleapis.com/books/v1/volumes?q=novels,stories,shortstories,&key=AIzaSyCU4rCPfnvJsjX0mJXq_8da6s1XYTvvx1w");

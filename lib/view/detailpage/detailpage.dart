@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:read_rover/controller/favcontroller.dart';
 
 import 'package:read_rover/model/bookmodel.dart';
 
@@ -30,14 +31,23 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     final bookprovider = Provider.of<bookapicontroller>(context);
-
+    final favController = Provider.of<FavController>(context);
     return Scaffold(
       appBar: AppBar(
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // Toggle favorite status
+                if (favController.isBookFavorite(widget.items)) {
+                  favController.removeFromFavorites(widget.items.id!);
+                } else {
+                  favController.addToFavorites(widget.items);
+                }
+              },
               icon: Icon(
-                Icons.favorite_border,
+                favController.isBookFavorite(widget.items)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
               ),
               iconSize: 30,
             ),
