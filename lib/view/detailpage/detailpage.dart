@@ -32,6 +32,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     final bookprovider = Provider.of<bookapicontroller>(context);
     final favController = Provider.of<FavController>(context);
+
     return Scaffold(
       appBar: AppBar(
           actions: [
